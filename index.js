@@ -10,7 +10,7 @@ async function run() {
         const workflowName = core.getInput('workflow-name');
 
         // Get the latest workflow runs for the specified workflow
-        const response = await octokit.actions.listWorkflowRuns({
+        const response = await octokit.rest.actions.listWorkflowRuns({
             owner: context.repo.owner,
             repo: context.repo.repo,
             workflow_id: workflowName,
@@ -21,7 +21,7 @@ async function run() {
         // Iterate over the workflow runs
         for (const run of response.data.workflow_runs) {
             // Get artifacts for each run
-            const artifactsResponse = await octokit.actions.listWorkflowRunArtifacts({
+            const artifactsResponse = await octokit.rest.actions.listWorkflowRunArtifacts({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 run_id: run.id,
