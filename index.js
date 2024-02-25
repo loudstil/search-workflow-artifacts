@@ -22,8 +22,8 @@ async function run() {
         for (const run of response.data.workflow_runs) {
             // Get artifacts for each run
             const artifactsResponse = await octokit.rest.actions.listWorkflowRunArtifacts({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
+                owner:  github.context.repo.owner,
+                repo:  github.context.repo.repo,
                 run_id: run.id,
             });
 
