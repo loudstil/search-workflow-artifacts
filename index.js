@@ -11,8 +11,8 @@ async function run() {
 
         // Get the latest workflow runs for the specified workflow
         const response = await octokit.rest.actions.listWorkflowRuns({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo,
             workflow_id: workflowName,
             status: 'success',
             per_page: 5
