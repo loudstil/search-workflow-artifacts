@@ -28,8 +28,6 @@ async function run() {
         // Iterate over the workflow runs
         for (const run of response.data.workflow_runs) {
             // Get artifacts for each run
-            console.log(run);
-            
             const artifactsResponse = await octokit.rest.actions.listWorkflowRunArtifacts({
                 owner:  github.context.repo.owner,
                 repo:  github.context.repo.repo,
@@ -38,8 +36,6 @@ async function run() {
 
             // Check if the artifact is found in the current run
             const artifact = artifactsResponse.data.artifacts.find(a => a.name === artifactNameToSearch);
-            
-            console.log(artifact);
 
             if (artifact) {
                 core.setOutput('art-id', artifact.id.toString());
