@@ -9,11 +9,18 @@ async function run() {
         const artifactNameToSearch = core.getInput('artifact-name');
         const workflowName = core.getInput('workflow-name');
 
+        const workflows = await oktokit.rest.actions.workflows({
+            owner: github.context.repo.owner,
+            repo: github.context.repo.repo
+        });
+
+        const workflow = workflows.find( w => w.name === workflowName);
+
         // Get the latest workflow runs for the specified workflow
         const response = await octokit.rest.actions.listWorkflowRuns({
             owner: github.context.repo.owner,
             repo: github.context.repo.repo,
-            workflow_id: workflowName,
+            workflow_id: workflow.id,
             status: 'success',
             per_page: 5
         });
