@@ -1,0 +1,20 @@
+name: 'Search Artifact'
+description: 'Searches for a specific artifact associated with a GitHub Actions workflow run.'
+runs:
+  using: 'node12'
+inputs:
+  artifact-name:
+    description: 'Name of the artifact to search for.'
+    required: true
+    default: 'your-artifact-name'
+  workflow-name:
+    description: 'Name of the workflow where the artifact was created'
+    required: true
+  token:
+    description: 'Authentication Token'
+    required: true
+outputs:
+  art-id:
+    description: 'ID of the found artifact.'
+  run-id:
+    description: 'ID of the workflow run where the artifact was created.'
