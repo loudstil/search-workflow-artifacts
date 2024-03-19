@@ -2,6 +2,7 @@ name: 'Search Artifact'
 description: 'Searches for a specific artifact associated with a GitHub Actions workflow run.'
 runs:
   using: 'node12'
+  main: 'dist/index.js'
 inputs:
   artifact-name:
     description: 'Name of the artifact to search for.'
